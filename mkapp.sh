@@ -12,6 +12,9 @@ mkapp() {
   aliases=("$@")
   dir="$BITNAMI_ROOT"/apps/"$name"
   
+  # require app name
+  [ -z "$name" ] && echo "please specify an app name" >&2 && return 1
+  
   # ensure app doesn't exist
   [ -d "$dir" ] && echo "cannot create $name: app exists" >&2 && return 1
   
