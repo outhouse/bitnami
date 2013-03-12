@@ -9,11 +9,11 @@ mkapp() {
   
   # vars
   name="$1"
-  aliases=("${@:2}")
+  aliases=("$@")
   dir="$BITNAMI_ROOT"/apps/"$name"
   
   # ensure app doesn't exist
-  [ ! -d "$dir" ] && echo "cannot create $name: app exists" >&2 && return 1
+  [ -d "$dir" ] && echo "cannot create $name: app exists" >&2 && return 1
   
   # build the requisite dirs
   __mkapp_create_dirs || return 1
@@ -34,10 +34,11 @@ __mkapp_create_dirs() {
 }
 
 __mkapp_create_apache_conf() {
-  vhost="NameVirtualHost *:*
-<VirtualHost *:*>
+  for alias in "${aliases[@]}"
+  do
+    echo "<VirtualHost *:*>
   DocumentRoot $dir/htdocs
-  ServerName $1
+  ServerName $alias
   <Directory $dir/htdocs>
     Options +FollowSymLinks
     AllowOverride None
@@ -49,15 +50,20 @@ __mkapp_create_apache_conf() {
     Require all granted
     </IfVersion>
   </Directory>
-</VirtualHost>"
+</VirtualHost>" >> "$dir"/conf/"$name".conf
+  done
 }
 
 __mkapp_include_apache_conf() {
-  echo "Include "
+  echo -en "\nInclude \"$dir/conf/$name.conf\"" >> "$BITNAMI_ROOT"/apache2/conf/httpd.conf
 }
 
 __mkapp_reload_apache() {
-  
+  "$BITNAMI_ROOT"/ctlscript.sh restart apache
+}
+
+__mkapp_chown_dir() {
+  chown -R bitnami:bitnami "$dir"
 }
 
 # main
