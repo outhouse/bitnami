@@ -13,10 +13,9 @@ mkapp() {
   local names=("$@")
   local home="$STACK"/apps/"$app"
   
-  # require app name
+  # sanity checks
+  [ "$(whoami)" != "root" ] && echo "you must be root (sudo)" >&2 && return 1
   [ -z "$app" ] && echo "please specify an app name" >&2 && return 1
-  
-  # ensure app dir doesn't exist
   [ -d "$home" ] && echo "cannot create $app: app exists" >&2 && return 1
   
   # do stuff
