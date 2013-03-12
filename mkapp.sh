@@ -39,6 +39,7 @@ __mkapp_create_vhosts() {
   ServerName $app
   <Directory $home/htdocs>
     Options +FollowSymLinks
+    AllowOverride All
     <IfVersion < 2.3 >
       Order allow,deny
       Allow from all
