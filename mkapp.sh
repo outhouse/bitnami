@@ -36,7 +36,7 @@ __mkapp_create_vhosts() {
   do
     echo "<VirtualHost *:*>
   DocumentRoot $home/htdocs
-  ServerName $app
+  ServerName $name
   <Directory $home/htdocs>
     Options +FollowSymLinks
     AllowOverride All
