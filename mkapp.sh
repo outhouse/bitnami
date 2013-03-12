@@ -44,7 +44,6 @@ __mkapp_create_apache_conf() {
   ServerName $alias
   <Directory $dir/htdocs>
     Options +FollowSymLinks
-    AllowOverride None
     <IfVersion < 2.3 >
     Order allow,deny
     Allow from all
