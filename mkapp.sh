@@ -53,7 +53,7 @@ __mkapp_create_vhosts() {
 }
 
 __mkapp_link_vhosts() {
-  echo -en "Include \"$home/conf/httpd.conf\"" >> "$STACK"/apache2/conf/httpd.conf
+  echo -e "Include \"$home/conf/httpd.conf\"" >> "$STACK"/apache2/conf/httpd.conf
 }
 
 __mkapp_chown_app() {
