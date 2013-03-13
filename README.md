@@ -13,6 +13,13 @@ Host myserver
   IdentityFile ~/.ssh/<ssh-key>
 ```
 
+## Setup postfix for sending mail
+```
+ssh myserver 
+sudo apt-get install postfix
+sudo "$(which postfix)" start
+```
+
 ## Deploy the mkapp script
 You only have to do this once: `rsync mkapp.sh myserver:mkapp`
 
