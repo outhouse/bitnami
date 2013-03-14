@@ -34,16 +34,16 @@ git clone https://github.com/jessetane/httpcat
 # generate builds
 echo "-- building custom packages --"
 cd "$lib"
-mkdir argue         && ln -s ../src/argue ./argue/0.0.1
-mkdir bitnami-mkapp && ln -s ../src/bitnami-mkapp ./bitnami-mkapp/current
-mkdir ubuntu-email  && ln -s ../src/ubuntu-email ./ubuntu-email/current
-mkdir httpcat       && ln -s ../src/httpcat ./httpcat/current
+mkdir argue         && ln -s ../../src/argue ./argue/0.0.1
+mkdir bitnami-mkapp && ln -s ../../src/bitnami-mkapp ./bitnami-mkapp/current
+mkdir ubuntu-email  && ln -s ../../src/ubuntu-email ./ubuntu-email/current
+mkdir httpcat       && ln -s ../../src/httpcat ./httpcat/current
 
 # link executables
 echo "-- linking custom executables --"
-echo "echo $lib/bitnami-mkapp/current/bin/mkapp" '"$@"' > "$bin"/mkapp && chmod +x "$bin/"mkapp
-echo "echo $lib/ubuntu-email/current/bin/email" '"$@"' > "$bin"/email && chmod +x "$bin/"email
-echo "echo $lib/httpcat/current/bin/httpcat" '"$@"' > "$bin"/httpcat && chmod +x "$bin/"httpcat
+echo "exec $lib/bitnami-mkapp/current/bin/mkapp" '"$@"' > "$bin"/mkapp && chmod +x "$bin/"mkapp
+echo "exec $lib/ubuntu-email/current/bin/email" '"$@"' > "$bin"/email && chmod +x "$bin/"email
+echo "exec $lib/httpcat/current/bin/httpcat" '"$@"' > "$bin"/httpcat && chmod +x "$bin/"httpcat
 
 # bash profile
 echo "-- configuring bash profile --"
