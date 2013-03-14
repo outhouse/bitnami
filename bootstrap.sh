@@ -2,6 +2,9 @@
 # outhouse/bitnami - cloud init script
 #
 
+# fail fast
+set -e
+
 # vars
 home="/home/bitnami"
 bin="$home/bin"
