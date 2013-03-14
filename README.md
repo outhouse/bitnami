@@ -32,4 +32,4 @@ rsync -auvz local/files/ myserver:apps/<domain>/htdocs/
 
 ## MX record setup for receiving mail for a domain
 * Create a subdomain `mail.domain` using an A record to the server's IP
-* Create an MX record `1 mail.domain` that points to `mail.domain`
+* Create an MX record `domain` with value `1 mail.domain`
