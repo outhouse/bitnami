@@ -15,7 +15,7 @@ Host myserver
 
 ## Bootstrap script
 You should only have to do this once
-`ssh myserver "curl https://github.com/outhouse/bitnami | bash"`
+`ssh myserver "curl https://raw.github.com/outhouse/bitnami/master/bootstrap.sh | bash"`
 
 ## Deploying an app
 * Use `mkapp` to scaffold directories and create apache vhost entries
