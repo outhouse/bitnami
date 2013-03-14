@@ -36,5 +36,5 @@ mkdir httpcat       && ln -s ../src/httpcat ./httpcat/current
 
 # link executables
 echo "echo $lib/bitnami-mkapp/current/bin/mkapp" '"$@"' > "$bin"/mkapp
-echo "echo $lib/ubuntu-email/current/bin/ubuntu-email" '"$@"' > "$bin"/email
+echo "echo $lib/ubuntu-email/current/bin/email" '"$@"' > "$bin"/email
 echo "echo $lib/httpcat/current/bin/httpcat" '"$@"' > "$bin"/httpcat
