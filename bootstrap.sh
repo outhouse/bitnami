@@ -50,7 +50,7 @@ echo "-- configuring bash profile --"
 cd
 
 # these should work even for non-interactive shells
-echo 'export PATH="$bin:$PATH"' >> temp
+echo "export PATH=\"$bin:\$PATH\"" >> temp
 echo 'function l { ls -alhBi --group-directories --color "$@"; }' >> temp
 cat .bashrc >> temp
 cat temp > .bashrc
