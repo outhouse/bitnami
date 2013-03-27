@@ -30,6 +30,12 @@ rsync -auvz local/files/ myserver:apps/<domain>/htdocs/
 * Create an ssh tunnel `ssh -N -L 9999:127.0.0.1:80 myserver`
 * Navigate to localhost:9999/phpmyadmin u: root p: bitnami
 
+## Sendmail
+* install postfix `sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y`
+* run `which sendmail` to get the location of the sendmail executable
+* edit /home/bitnami/stack/php/etc/php.ini and ensure the sendmail setting points to the right executable
+* restart apache `sudo /home/bitnami/stack/ctlscript.sh restart apache`
+
 ## MX record setup for receiving mail for a domain
 * Create a subdomain `mail.domain` using an A record to the server's IP
 * Create an MX record `domain` with value `1 mail.domain`
