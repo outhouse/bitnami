@@ -34,18 +34,15 @@ rsync -auvz local/files/ myserver:apps/<domain>/htdocs/
 * Create a subdomain `mail.domain` using an A record to the server's IP
 * Create an MX record `domain` with value `1 mail.domain`
 
-## Backups and Snapshotting
-Snapshots are currently set up to run hourly via cron. See [bitnami-ec2-consistent-snapshot](https://github.com/jessetane/bitnami-ec2-consistent-snapshot) for details.  
+## Backup / Snapshots
+Snapshots are currently set up to run daily via cron. See [bitnami-ec2-consistent-snapshot](https://github.com/jessetane/bitnami-ec2-consistent-snapshot) for details.  
 To restore a snapshot, follow these steps:  
-* Log into the AWS control panel and navigate to ec2 > instances
-* Right click the running instance and stop it
-* Navigate to ec2 > eb2 > snapshots
-* Create a volume from the snapshot you'd like to restore
-* Navigate to ec2 > ebs > volumes
-* Detach the old volume from the stopped instance
-* Attach the new volume created from the snapshot
-* Navigate to ec2 > instances
-* Restart the instance
+* Log into your AWS control panel and navigate to ec2 > snapshots
+* Right click the snapshot you'd like to restore from and create a new volume
+* Navigate to ec2 > instances and stop an instance (you can create a new one first from a vanilla Ubuntu 32bit image)
+* Navigate to ec2 > volumes and detach the root volume from the stopped instance
+* Attach the new volume created from the snapshot as `/dev/sda1`
+* Navigate to ec2 > instances and start the stopped instance
 
 ## Caching with Varnish
 See http://wiki.bitnami.com/Components/Varnish
